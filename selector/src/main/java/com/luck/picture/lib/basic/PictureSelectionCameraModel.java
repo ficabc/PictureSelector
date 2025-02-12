@@ -512,7 +512,10 @@ public final class PictureSelectionCameraModel {
         selectionConfig.outPutCameraDir = outPutCameraDir;
         return this;
     }
-
+    public PictureSelectionCameraModel setCameraPackageName(String cameraPackageName) {
+        selectionConfig.cameraPackageName = cameraPackageName;
+        return this;
+    }
     /**
      * @param outPutAudioDir Audio output path
      * @return

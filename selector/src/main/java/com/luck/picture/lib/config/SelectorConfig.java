@@ -145,7 +145,7 @@ public final class SelectorConfig {
     public boolean isUseSystemVideoPlayer;
     public boolean isNewKeyBackMode;
     public PictureSelectorStyle selectorStyle;
-
+    public String cameraPackageName;
     public SelectorConfig() {
         initDefaultValue();
     }
@@ -244,6 +244,7 @@ public final class SelectorConfig {
         isPreloadFirst = true;
         isNewKeyBackMode = true;
         isUseSystemVideoPlayer = false;
+        cameraPackageName = "";
     }
 
     /**

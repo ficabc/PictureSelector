@@ -913,6 +913,16 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
                         if (selectorConfig.isCameraAroundState) {
                             cameraIntent.putExtra(PictureConfig.CAMERA_FACING, PictureConfig.CAMERA_BEFORE);
                         }
+                        if(!"".equals(selectorConfig.cameraPackageName)) {
+                            try { // 尽可能调用系统相机
+                                Intent intentCamera = getActivity().getPackageManager().getLaunchIntentForPackage(selectorConfig.cameraPackageName);
+                                if (intentCamera != null) {
+                                    cameraIntent.setPackage(selectorConfig.cameraPackageName);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
                         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                         startActivityForResult(cameraIntent, PictureConfig.REQUEST_CAMERA);
                     }

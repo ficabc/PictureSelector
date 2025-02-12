@@ -36,6 +36,7 @@ public class MediaStoreUtils {
             cameraFileName = config.isOnlyCamera
                     ? config.outPutCameraImageFileName : System.currentTimeMillis() + "_" + config.outPutCameraImageFileName;
         }
+
         if (SdkVersionUtils.isQ() && TextUtils.isEmpty(config.outPutCameraDir)) {
             imageUri = createImageUri(context, cameraFileName, config.cameraImageFormatForQ);
             config.cameraPath = imageUri != null ? imageUri.toString() : "";
