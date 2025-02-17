@@ -216,7 +216,7 @@ public final class SelectorConfig {
         isSyncCover = !SdkVersionUtils.isQ();
         ofAllCameraType = SelectMimeType.ofAll();
         isOnlySandboxDir = false;
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         isCameraForegroundService = false;
         isResultListenerBack = true;
         isActivityResultBack = false;
