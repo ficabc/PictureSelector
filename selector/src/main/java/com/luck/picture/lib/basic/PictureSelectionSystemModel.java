@@ -203,7 +203,10 @@ public final class PictureSelectionSystemModel {
         selectionConfig.isNewKeyBackMode = isNewKeyBackMode;
         return this;
     }
-
+    public PictureSelectionSystemModel isPopBackTop(boolean popBackTop) {
+        selectionConfig.popBackTop = popBackTop;
+        return this;
+    }
     /**
      * # file size The unit is KB
      *

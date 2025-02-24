@@ -27,7 +27,9 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import com.luck.picture.lib.PictureSelectorSystemFragment;
 import com.luck.picture.lib.R;
 import com.luck.picture.lib.app.PictureAppMaster;
 import com.luck.picture.lib.config.Crop;
@@ -322,7 +324,7 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
             ImmersiveManager.translucentStatusBar(requireActivity(), selectMainStyle.isDarkStatusBarBlack());
         }
     }
-
+    OnBackPressedCallback pressedCallback;
     /**
      * 设置回退监听
      *
@@ -330,12 +332,13 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
      */
     public void setRootViewKeyListener(View view) {
         if (selectorConfig.isNewKeyBackMode) {
-            requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            pressedCallback = new OnBackPressedCallback(true) {
                 @Override
                 public void handleOnBackPressed() {
                     onKeyBackFragmentFinish();
                 }
-            });
+            };
+            requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), pressedCallback);
         } else {
             view.setFocusableInTouchMode(true);
             view.requestFocus();
@@ -1976,7 +1979,14 @@ public abstract class PictureCommonFragment extends Fragment implements IPicture
                 if (selectorConfig.viewLifecycle != null) {
                     selectorConfig.viewLifecycle.onDestroy(this);
                 }
-                getActivity().getSupportFragmentManager().popBackStack();
+                if(selectorConfig.popBackTop){
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }else{
+                    if(pressedCallback != null){
+                        pressedCallback.remove();
+                    }
+                    getActivity().getSupportFragmentManager().popBackStack(PictureSelectorSystemFragment.TAG,0);
+                }
             }
 
             List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();

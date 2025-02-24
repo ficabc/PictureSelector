@@ -298,7 +298,10 @@ public final class PictureSelectionCameraModel {
         selectionConfig.isCameraForegroundService = isForeground;
         return this;
     }
-
+    public PictureSelectionCameraModel isPopBackTop(boolean popBackTop) {
+        selectionConfig.popBackTop = popBackTop;
+        return this;
+    }
     /**
      * Compatible with Fragment fallback scheme, default to true
      *

@@ -146,6 +146,7 @@ public final class SelectorConfig {
     public boolean isNewKeyBackMode;
     public PictureSelectorStyle selectorStyle;
     public String cameraPackageName;
+    public boolean popBackTop;
     public SelectorConfig() {
         initDefaultValue();
     }
@@ -245,6 +246,7 @@ public final class SelectorConfig {
         isNewKeyBackMode = true;
         isUseSystemVideoPlayer = false;
         cameraPackageName = "";
+        popBackTop = true;
     }
 
     /**
